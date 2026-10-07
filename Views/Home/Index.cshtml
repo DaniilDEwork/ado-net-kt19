@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Главная";
+}
+<h1>Защищённый чат</h1>
+<p>В чате можно обмениваться сообщениями без обновления страницы</p>
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <p>Вы вошли как <strong>@User.Identity.Name</strong></p>
+    <a class="button" asp-controller="Chat" asp-action="Index">Открыть чат</a>
+}
+else
+{
+    <p>Для доступа к чату нужно зарегистрироваться или войти в аккаунт</p>
+    <div class="actions">
+        <a class="button" asp-controller="Account" asp-action="Register">Зарегистрироваться</a>
+        <a class="button" asp-controller="Account" asp-action="Login">Войти</a>
+    </div>
+}

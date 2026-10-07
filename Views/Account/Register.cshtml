@@ -1,0 +1,21 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+<h1>Регистрация</h1>
+<form class="login-form" asp-controller="Account" asp-action="Register" method="post" novalidate>
+    <div asp-validation-summary="ModelOnly" class="error" role="alert"></div>
+    <label asp-for="UserName">Имя пользователя</label>
+    <input asp-for="UserName" autocomplete="username" maxlength="30">
+    <span asp-validation-for="UserName"></span>
+    <p class="hint">От 3 до 30 символов, буквы, цифры и подчёркивание</p>
+    <label asp-for="Password">Пароль</label>
+    <input asp-for="Password" autocomplete="new-password" maxlength="100">
+    <span asp-validation-for="Password"></span>
+    <p class="hint">От 8 символов, с буквами и цифрами</p>
+    <label asp-for="ConfirmPassword">Подтверждение пароля</label>
+    <input asp-for="ConfirmPassword" autocomplete="new-password" maxlength="100">
+    <span asp-validation-for="ConfirmPassword"></span>
+    <button type="submit">Зарегистрироваться</button>
+</form>
+<p>Уже есть аккаунт? <a asp-controller="Account" asp-action="Login">Войти</a></p>

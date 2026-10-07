@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Чат";
+}
+<h1>Общий чат</h1>
+<p>Вы общаетесь под именем <strong>@User.Identity?.Name</strong></p>
+<p id="connection-status" class="chat-status" role="status">Подключение к чату</p>
+<div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-label="Сообщения чата">
+    <p id="chat-empty" class="chat-empty">Сообщений пока нет</p>
+</div>
+<form id="message-form" class="chat-form">
+    <label for="message">Сообщение</label>
+    <textarea id="message" maxlength="500" placeholder="Введите сообщение" rows="3"></textarea>
+    <div class="actions">
+        <button id="send-button" type="submit" disabled>Отправить</button>
+        <button id="reconnect-button" type="button" hidden>Подключиться снова</button>
+    </div>
+    <p id="message-error" class="error" role="alert" hidden></p>
+</form>
+@section Scripts {
+    <script src="~/lib/signalr/signalr.min.js" asp-append-version="true"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - КТ-19</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <p class="site-title">КТ-19 - Аутентификация и авторизация на основе куки</p>
+            <nav>
+                <a asp-controller="Home" asp-action="Index">Главная</a>
+                <a asp-controller="Chat" asp-action="Index">Чат</a>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <form class="nav-form" asp-controller="Account" asp-action="Logout" method="post" data-logout>
+                        <button type="submit">Выйти</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                    <a asp-controller="Account" asp-action="Login">Вход</a>
+                }
+            </nav>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <p class="account-name">Пользователь: @User.Identity.Name</p>
+            }
+        </div>
+    </header>
+    <main class="container content">
+        @if (TempData["Success"] is string success)
+        {
+            <p class="success" role="status">@success</p>
+        }
+        @RenderBody()
+    </main>
+    <footer class="container">ADO.NET - ASP.NET Core MVC - SignalR - КТ-19</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

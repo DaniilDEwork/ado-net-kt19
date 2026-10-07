@@ -1,0 +1,21 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Вход";
+}
+<h1>Вход</h1>
+@if (Model.ReturnUrl is not null)
+{
+    <p class="hint">Чат доступен только после входа</p>
+}
+<form class="login-form" asp-controller="Account" asp-action="Login" method="post" novalidate>
+    <input asp-for="ReturnUrl" type="hidden">
+    <div asp-validation-summary="ModelOnly" class="error" role="alert"></div>
+    <label asp-for="UserName">Имя пользователя</label>
+    <input asp-for="UserName" autocomplete="username" maxlength="30">
+    <span asp-validation-for="UserName"></span>
+    <label asp-for="Password">Пароль</label>
+    <input asp-for="Password" autocomplete="current-password" maxlength="100">
+    <span asp-validation-for="Password"></span>
+    <button type="submit">Войти</button>
+</form>
+<p>Нет аккаунта? <a asp-controller="Account" asp-action="Register">Зарегистрироваться</a></p>
